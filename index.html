@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Diamond Click here 🎅</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a1929, #1e3c72);
+            color: #fff;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        /* Premium animated background */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3), transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.3), transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(255, 219, 98, 0.3), transparent 50%);
+            z-index: -2;
+            animation: bgAnimation 20s ease infinite;
+        }
+        
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/></svg>');
+            background-size: 100px 100px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        @keyframes bgAnimation {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        /* Christmas snow effect */
+        .snow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: #fff;
+            font-size: 1em;
+            animation: fall linear;
+            opacity: 0.8;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+        }
+        
+        @keyframes fall {
+            from {
+                transform: translateY(-100vh) rotate(0deg);
+            }
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        /* Christmas lights decoration */
+        .christmas-lights {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            pointer-events: none;
+            z-index: 2;
+            display: flex;
+            justify-content: space-around;
+            padding: 0 10px;
+        }
+        
+        .light {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin: 5px;
+            box-shadow: 0 0 10px;
+            animation: glow 1.5s infinite alternate;
+        }
+        
+        .light:nth-child(odd) {
+            background-color: #ff0000;
+            box-shadow: 0 0 15px #ff0000;
+        }
+        
+        .light:nth-child(even) {
+            background-color: #00ff00;
+            box-shadow: 0 0 15px #00ff00;
+        }
+        
+        .light:nth-child(3n) {
+            background-color: #ffcc00;
+            box-shadow: 0 0 15px #ffcc00;
+        }
+        
+        @keyframes glow {
+            from {
+                opacity: 0.4;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Header styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.25);
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: repeating-linear-gradient(
+                90deg,
+                #ff0000,
+                #ff0000 10px,
+                #ffffff 10px,
+                #ffffff 20px
+            );
+        }
+        
+        .app-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .header-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        /* Icon button styles */
+        .icon-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: none;
+        }
+        
+        .icon-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .icon-btn:hover::before {
+            opacity: 1;
+        }
+        
+        .icon-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .settings-btn {
+            background: linear-gradient(135deg, #0f7938, #0d5928);
+            box-shadow: 0 4px 10px rgba(15, 121, 56, 0.4);
+        }
+        
+        .settings-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(15, 121, 56, 0.5);
+        }
+        
+        .redeem-btn {
+            background: linear-gradient(135deg, #c41e3a, #8b0000);
+            box-shadow: 0 4px 10px rgba(196, 30, 58, 0.4);
+        }
+        
+        .redeem-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(196, 30, 58, 0.5);
+        }
+        
+        /* Main content area */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            transition: filter 0.3s ease;
+            z-index: 10;
+        }
+        
+        .main-content.paused {
+            filter: blur(3px);
+        }
+        
+        .main-content.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        
+        /* Click counter display */
+        .click-counter {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 204, 0, 0.3);
+        }
+        
+        .click-counter-value {
+            color: #ffcc00;
+            font-weight: bold;
+        }
+        
+        /* Wallet display */
+        .wallet {
+            font-size: 1.6rem;
+            margin-bottom: 30px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 18px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 204, 0, 0.3);
+        }
+        
+        .wallet-value {
+            color: #ffcc00;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Diamond styles */
+        .diamond-container {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin: 20px auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .diamond {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(30deg) rotateY(45deg);
+            transition: transform 0.5s ease;
+        }
+        
+        .diamond-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffcc00, #ff0000);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            opacity: 0.9;
+            box-shadow: 0 0 25px rgba(255, 204, 0, 0.8);
+        }
+        
+        .diamond-face:nth-child(1) { transform: rotateY(0deg) translateZ(110px); }
+        .diamond-face:nth-child(2) { transform: rotateY(90deg) translateZ(110px); }
+        .diamond-face:nth-child(3) { transform: rotateY(180deg) translateZ(110px); }
+        .diamond-face:nth-child(4) { transform: rotateY(270deg) translateZ(110px); }
+        .diamond-face:nth-child(5) { transform: rotateX(90deg) translateZ(110px); }
+        .diamond-face:nth-child(6) { transform: rotateX(-90deg) translateZ(110px); }
+        
+        .diamond-container:hover .diamond {
+            transform: rotateX(30deg) rotateY(225deg);
+        }
+        
+        .diamond-container.tapped .diamond {
+            transform: rotateX(30deg) rotateY(45deg) scale(0.9);
+        }
+        
+        .diamond-container.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        
+        /* Christmas sparkle effect */
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, #fff, transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle 1.5s infinite;
+        }
+        
+        @keyframes sparkle {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+        
+        /* Tap CTA */
+        .tap-cta {
+            font-size: 1.3rem;
+            margin-top: 30px;
+            text-align: center;
+            color: #fff;
+            animation: pulse 2s infinite;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+        
+        /* Tap animation */
+        .tap-animation {
+            position: absolute;
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #ffcc00;
+            pointer-events: none;
+            animation: flyUp 1s ease-out forwards;
+            z-index: 1000;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        @keyframes flyUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+        }
+        
+        /* Confetti effect */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ffcc00;
+            pointer-events: none;
+            z-index: 999;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Progress indicator */
+        .progress-container {
+            width: 80%;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            margin-top: 20px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ffcc00, #ff0000);
+            width: 0%;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.6);
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, rgba(15, 121, 56, 0.9), rgba(13, 89, 40, 0.9));
+            padding: 30px;
+            border-radius: 20px;
+            width: 85%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            animation: modalSlideIn 0.5s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 204, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px) scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #ff0000;
+            transition: all 0.2s ease;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .close-modal:hover {
+            transform: scale(1.2);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Ad banner */
+        .ad-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            background: #0a1929;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #aaa;
+            font-size: 0.8rem;
+            z-index: 100;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+            border-top: 2px solid rgba(255, 204, 0, 0.3);
+        }
+        
+        /* Redeem button */
+        .redeem-whatsapp-btn {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .redeem-whatsapp-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .redeem-whatsapp-btn:hover::before {
+            left: 100%;
+        }
+        
+        .redeem-whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        .redeem-whatsapp-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .redeem-whatsapp-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        /* Daily streak indicator */
+        .streak-indicator {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 204, 0, 0.3);
+        }
+        
+        .streak-icon {
+            color: #ff0000;
+        }
+        
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 204, 0, 0.3);
+        }
+        
+        .toast.show {
+            opacity: 1;
+        }
+        
+        /* Success message */
+        .success-message {
+            background: rgba(46, 204, 113, 0.9);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+        
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Ad modal specific styles */
+        #adModal .modal-content {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+            max-width: 320px;
+            max-height: 280px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255, 204, 0, 0.3);
+        }
+        
+        #adModal .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        
+        #adModal iframe {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        /* Celebration modal with ad */
+        #celebrationModal .modal-content {
+            padding: 25px;
+            max-width: 380px;
+            background: linear-gradient(135deg, rgba(15, 121, 56, 0.9), rgba(13, 89, 40, 0.9));
+            border: 2px solid rgba(255, 204, 0, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .celebration-title {
+            font-size: 1.8rem;
+            color: #ffcc00;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .celebration-message {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .celebration-amount {
+            color: #ff0000;
+            font-weight: bold;
+        }
+        
+        .celebration-ad-container {
+            margin-top: 20px;
+            width: 100%;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        /* Settings modal styles */
+        .settings-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .settings-option:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .settings-option-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .settings-option-icon {
+            width: 24px;
+            height: 24px;
+            opacity: 0.8;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: #ccc;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .toggle-switch.active {
+            background: #0f7938;
+        }
+        
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .toggle-switch.active::after {
+            transform: translateX(30px);
+        }
+        
+        /* Offline modal styles */
+        #offlineModal .modal-content {
+            background: linear-gradient(135deg, rgba(196, 30, 58, 0.9), rgba(139, 0, 0, 0.9));
+            padding: 30px;
+            border-radius: 20px;
+            width: 85%;
+            max-width: 350px;
+            text-align: center;
+            position: relative;
+            animation: modalSlideIn 0.5s ease;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 204, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .offline-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .offline-message {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .offline-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff0000;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .status-indicator.online {
+            background: #0f7938;
+            animation: none;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .diamond-container {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .wallet {
+                font-size: 1.3rem;
+            }
+            
+            .tap-cta {
+                font-size: 1.1rem;
+            }
+            
+            .modal-content {
+                width: 90%;
+                padding: 20px;
+            }
+            
+            #adModal .modal-content {
+                max-width: 300px;
+                max-height: 260px;
+            }
+            
+            #celebrationModal .modal-content {
+                max-width: 320px;
+                padding: 20px;
+            }
+            
+            .celebration-title {
+                font-size: 1.5rem;
+            }
+            
+            .celebration-ad-container {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Christmas snow effect -->
+    <div class="snow-container" id="snowContainer"></div>
+    
+    <!-- Christmas lights decoration -->
+    <div class="christmas-lights">
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+    </div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="app-name">Diamond Click here 🎅</div>
+        <div class="header-buttons">
+            <button class="icon-btn settings-btn" id="settingsBtn" aria-label="Settings">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M12 1v6m0 6v6m4.22-13.22l4.24 4.24M1.54 9.96l4.24 4.24M12 23v-6m0-6V1m-4.22 13.22L3.54 9.98m16.92 4.04l-4.24-4.24"></path>
+                </svg>
+            </button>
+            <button class="icon-btn redeem-btn" id="redeemBtn" aria-label="Redeem">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Main content -->
+    <main class="main-content" id="mainContent">
+        <!-- Click counter display -->
+        <div class="click-counter">
+            Clicks: <span class="click-counter-value" id="clickCounterValue">0</span>/<span id="clickCounterMax">5</span>
+        </div>
+        
+        <!-- Daily streak indicator -->
+        <div class="streak-indicator">
+            <span class="streak-icon">🔥</span>
+            <span id="streakCount">0</span> day streak
+        </div>
+        
+        <!-- Wallet display -->
+        <div class="wallet">
+            Wallet: <span class="wallet-value" id="walletValue">0</span> Diamonds
+        </div>
+        
+        <!-- Diamond -->
+        <div class="diamond-container" id="diamondContainer" aria-label="Tap to earn diamonds">
+            <div class="diamond">
+                <div class="diamond-face"></div>
+                <div class="diamond-face"></div>
+                <div class="diamond-face"></div>
+                <div class="diamond-face"></div>
+                <div class="diamond-face"></div>
+                <div class="diamond-face"></div>
+            </div>
+            <!-- Christmas sparkle effects -->
+            <div class="sparkle" style="top: 20%; left: 20%;"></div>
+            <div class="sparkle" style="top: 70%; left: 80%; animation-delay: 0.5s;"></div>
+            <div class="sparkle" style="top: 40%; left: 60%; animation-delay: 1s;"></div>
+        </div>
+        
+        <!-- Tap CTA -->
+        <div class="tap-cta" id="tapCta">Tap Diamond</div>
+        
+        <!-- Progress bar - now shows total taps instead of session limit -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+    </main>
+    
+    <!-- Ad banner -->
+    <div class="ad-banner" id="adBanner">
+        <!-- Banner Ad Script -->
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'fef31071a83c7e23748c2efc47b7f646',
+                'format' : 'iframe',
+                'height' : 90,
+                'width' : 728,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/fef31071a83c7e23748c2efc47b7f646/invoke.js"></script>
+    </div>
+    
+    <!-- Celebration modal with ad -->
+    <div class="modal" id="celebrationModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeCelebration">&times;</span>
+            <h2 class="celebration-title">Congratulations!</h2>
+            <p class="celebration-message">You've earned <span class="celebration-amount" id="celebrationAmount">50</span> diamonds!</p>
+            <div class="progress-container">
+                <div class="progress-bar" id="modalProgressBar"></div>
+            </div>
+            
+            <!-- Ad container inside celebration modal -->
+            <div class="celebration-ad-container">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : '64413f8141bdc804a0fa108dd8a0ec82',
+                        'format' : 'iframe',
+                        'height' : 250,
+                        'width' : 300,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/64413f8141bdc804a0fa108dd8a0ec82/invoke.js"></script>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Ad popup -->
+    <div class="modal" id="adModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeAd">&times;</span>
+            <!-- Popup Ad Script -->
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '64413f8141bdc804a0fa108dd8a0ec82',
+                    'format' : 'iframe',
+                    'height' : 250,
+                    'width' : 300,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/64413f8141bdc804a0fa108dd8a0ec82/invoke.js"></script>
+        </div>
+    </div>
+    
+    <!-- Offline modal -->
+    <div class="modal" id="offlineModal">
+        <div class="modal-content">
+            <div class="offline-icon">📡</div>
+            <h2>No Internet Connection</h2>
+            <p class="offline-message">Please connect to internet to continue.</p>
+            <div class="offline-status">
+                <div class="status-indicator" id="statusIndicator"></div>
+                <span id="statusText">Checking...</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Redeem modal -->
+    <div class="modal" id="redeemModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeRedeem">&times;</span>
+            <h2>Redeem Diamonds</h2>
+            <p>Minimum redeem amount: 500 diamonds</p>
+            
+            <button class="redeem-whatsapp-btn" id="generateCodeBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.374 0 0 5.373 0 12c0 2.12.553 4.106 1.508 5.836L.058 24l6.353-1.447A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.894 9.894 0 01-5.267-1.51l-.378-.226-3.92.89.878-3.82-.207-.385A9.894 9.894 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10zm5.636-7.729c-.31-.155-1.833-.904-2.117-1.007-.284-.103-.49-.155-.697.155-.207.31-.802 1.007-.983 1.213-.18.207-.361.232-.67.077-.31-.155-1.307-.482-2.49-1.537-.92-.82-1.542-1.833-1.724-2.143-.18-.31-.019-.477.136-.632.14-.14.31-.362.465-.543.155-.18.207-.31.31-.49.103-.18.052-.361-.026-.516-.077-.155-.697-1.68-.955-2.302-.252-.607-.508-.525-.697-.535-.18-.01-.387-.012-.593-.012-.206 0-.542.077-.826.362-.284.285-1.084 1.058-1.084 2.58 0 1.522 1.11 2.99 1.265 3.197.155.207 2.185 3.338 5.29 4.682.739.32 1.317.51 1.768.653.742.237 1.418.203 1.953.123.596-.087 1.833-.75 2.09-1.475.258-.726.258-1.348.18-1.475-.077-.127-.284-.206-.594-.36z"/>
+                </svg>
+                Generate WhatsApp Redeem Code
+            </button>
+            
+            <div class="success-message" id="successMessage">
+                Your redeem code has been sent to WhatsApp!
+            </div>
+            
+            <div id="redeemError" style="display: none; color: #e74c3c;">
+                You don't have enough diamonds to redeem. Minimum is 500.
+            </div>
+        </div>
+    </div>
+    
+    <!-- Settings modal -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeSettings">&times;</span>
+            <h2>Settings</h2>
+            
+            <div class="settings-option">
+                <div class="settings-option-label">
+                    <svg class="settings-option-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                    </svg>
+                    <span>Show ad after every 2 clicks</span>
+                </div>
+                <div class="toggle-switch" id="adFrequencyToggle"></div>
+            </div>
+            
+            <div class="settings-option">
+                <div class="settings-option-label">
+                    <svg class="settings-option-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <polygon points="22 9 17 5 17 19 22 15 22 9"></polygon>
+                        <path d="M6 9h12"></path>
+                    </svg>
+                    <span>Sound Effects</span>
+                </div>
+                <div class="toggle-switch" id="soundToggle"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
+    
+    <script>
+        // INTEGRATION CHECKLIST:
+        // 1. Banner Ad ID: fef31071a83c7e23748c2efc47b7f646
+        // 2. Popup Ad ID: 64413f8141bdc804a0fa108dd8a0ec82
+        // 3. WhatsApp Number: 7715952502
+        
+        // Configuration
+        const MIN_REDEEM_AMOUNT = 500;
+        const DIAMONDS_PER_TAP = 8; // Reduced from 10 to increase difficulty
+        const DEBOUNCE_TIME = 400; // Increased from 350ms to add delay
+        const DEFAULT_AD_POPUP_INTERVAL = 5; // Default: show ad after 5 clicks
+        const FAST_AD_POPUP_INTERVAL = 2; // Option: show ad after 2 clicks
+        const WHATSAPP_NUMBER = "7715952502";
+        const OFFLINE_CHECK_INTERVAL = 3000; // Check internet status every 3 seconds
+        
+        // State variables
+        let wallet = 0;
+        let totalTaps = 0;
+        let currentClickCount = 0; // Count of clicks since last ad
+        let adPopupInterval = DEFAULT_AD_POPUP_INTERVAL; // Current interval for showing ads
+        let lastTapTime = 0;
+        let sessionStartTime = Date.now();
+        let firstTapTime = 0;
+        let adPopupCount = 0;
+        let celebrationCount = 0;
+        let isOnline = navigator.onLine;
+        let isGamePaused = false;
+        let soundEnabled = false;
+        let offlineCheckInterval;
+        let audioContext;
+        let clickSoundBuffer;
+        let bellSoundBuffer;
+        
+        // DOM elements
+        const diamondContainer = document.getElementById('diamondContainer');
+        const walletValue = document.getElementById('walletValue');
+        const tapCta = document.getElementById('tapCta');
+        const progressBar = document.getElementById('progressBar');
+        const celebrationModal = document.getElementById('celebrationModal');
+        const adModal = document.getElementById('adModal');
+        const offlineModal = document.getElementById('offlineModal');
+        const redeemModal = document.getElementById('redeemModal');
+        const settingsModal = document.getElementById('settingsModal');
+        const settingsBtn = document.getElementById('settingsBtn');
+        const redeemBtn = document.getElementById('redeemBtn');
+        const closeCelebration = document.getElementById('closeCelebration');
+        const closeAd = document.getElementById('closeAd');
+        const closeRedeem = document.getElementById('closeRedeem');
+        const closeSettings = document.getElementById('closeSettings');
+        const generateCodeBtn = document.getElementById('generateCodeBtn');
+        const redeemError = document.getElementById('redeemError');
+        const successMessage = document.getElementById('successMessage');
+        const streakCount = document.getElementById('streakCount');
+        const toast = document.getElementById('toast');
+        const clickCounterValue = document.getElementById('clickCounterValue');
+        const clickCounterMax = document.getElementById('clickCounterMax');
+        const mainContent = document.getElementById('mainContent');
+        const adFrequencyToggle = document.getElementById('adFrequencyToggle');
+        const soundToggle = document.getElementById('soundToggle');
+        const statusIndicator = document.getElementById('statusIndicator');
+        const statusText = document.getElementById('statusText');
+        const snowContainer = document.getElementById('snowContainer');
+        
+        // Initialize app
+        function init() {
+            // Initialize audio context for sound effects
+            initAudio();
+            
+            // Create snow effect
+            createSnowEffect();
+            
+            // Load data from localStorage
+            loadFromStorage();
+            
+            // Update UI
+            updateWallet();
+            updateProgressBar();
+            updateStreak();
+            updateClickCounter();
+            updateSettings();
+            
+            // Set up event listeners
+            setupEventListeners();
+            
+            // Start offline checking
+            startOfflineCheck();
+            
+            // Initial check for online status
+            checkOnlineStatus();
+        }
+        
+        // Create snow effect
+        function createSnowEffect() {
+            const snowflakes = 50;
+            const snowContainer = document.getElementById('snowContainer');
+            
+            for (let i = 0; i < snowflakes; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.innerHTML = '❄';
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+                snowflake.style.opacity = Math.random();
+                snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+                
+                snowContainer.appendChild(snowflake);
+            }
+        }
+        
+        // Initialize audio context and create click and bell sounds
+        function initAudio() {
+            try {
+                // Create audio context
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // Create a simple click sound using oscillators
+                const clickDuration = 0.1;
+                const clickSampleRate = audioContext.sampleRate;
+                const clickFrameCount = clickDuration * clickSampleRate;
+                
+                // Create buffer for click sound
+                clickSoundBuffer = audioContext.createBuffer(1, clickFrameCount, clickSampleRate);
+                const clickChannelData = clickSoundBuffer.getChannelData(0);
+                
+                // Generate a simple click/pop sound
+                for (let i = 0; i < clickFrameCount; i++) {
+                    const t = i / clickSampleRate;
+                    // Exponential decay envelope
+                    const envelope = Math.exp(-15 * t);
+                    // Add some noise for a "pop" effect
+                    const noise = (Math.random() * 2 - 1) * 0.2;
+                    // Combine a sine wave with noise
+                    clickChannelData[i] = (Math.sin(2 * Math.PI * 800 * t) * 0.5 + noise) * envelope;
+                }
+                
+                // Create a bell sound for celebrations
+                const bellDuration = 0.5;
+                const bellSampleRate = audioContext.sampleRate;
+                const bellFrameCount = bellDuration * bellSampleRate;
+                
+                // Create buffer for bell sound
+                bellSoundBuffer = audioContext.createBuffer(1, bellFrameCount, bellSampleRate);
+                const bellChannelData = bellSoundBuffer.getChannelData(0);
+                
+                // Generate a bell sound
+                for (let i = 0; i < bellFrameCount; i++) {
+                    const t = i / bellSampleRate;
+                    // Exponential decay envelope
+                    const envelope = Math.exp(-2 * t);
+                    // Combine multiple sine waves for a bell sound
+                    bellChannelData[i] = (
+                        Math.sin(2 * Math.PI * 800 * t) * 0.3 +
+                        Math.sin(2 * Math.PI * 1200 * t) * 0.2 +
+                        Math.sin(2 * Math.PI * 1600 * t) * 0.1
+                    ) * envelope;
+                }
+            } catch (error) {
+                console.error('Audio initialization failed:', error);
+            }
+        }
+        
+        // Play click sound
+        function playClickSound() {
+            if (!soundEnabled || !audioContext || !clickSoundBuffer) return;
+            
+            try {
+                // Create a source node
+                const source = audioContext.createBufferSource();
+                source.buffer = clickSoundBuffer;
+                
+                // Connect to output
+                source.connect(audioContext.destination);
+                
+                // Play the sound
+                source.start(0);
+            } catch (error) {
+                console.error('Error playing sound:', error);
+            }
+        }
+        
+        // Play bell sound
+        function playBellSound() {
+            if (!soundEnabled || !audioContext || !bellSoundBuffer) return;
+            
+            try {
+                // Create a source node
+                const source = audioContext.createBufferSource();
+                source.buffer = bellSoundBuffer;
+                
+                // Connect to output
+                source.connect(audioContext.destination);
+                
+                // Play the sound
+                source.start(0);
+            } catch (error) {
+                console.error('Error playing sound:', error);
+            }
+        }
+        
+        // Load data from localStorage
+        function loadFromStorage() {
+            const savedWallet = localStorage.getItem('astrafun_wallet');
+            const savedTotalTaps = localStorage.getItem('astrafun_totalTaps');
+            const savedStreak = localStorage.getItem('astrafun_streak');
+            const savedLastPlayDate = localStorage.getItem('astrafun_lastPlayDate');
+            const savedAdFrequency = localStorage.getItem('astrafun_adFrequency');
+            const savedSoundEnabled = localStorage.getItem('astrafun_soundEnabled');
+            
+            if (savedWallet !== null) wallet = parseInt(savedWallet, 10);
+            if (savedTotalTaps !== null) totalTaps = parseInt(savedTotalTaps, 10);
+            
+            // Load ad frequency setting
+            if (savedAdFrequency !== null) {
+                adPopupInterval = parseInt(savedAdFrequency, 10);
+            }
+            
+            // Load sound setting
+            if (savedSoundEnabled !== null) {
+                soundEnabled = savedSoundEnabled === 'true';
+            }
+            
+            // Update streak
+            if (savedStreak !== null) {
+                const streak = parseInt(savedStreak, 10);
+                const lastPlayDate = savedLastPlayDate ? new Date(savedLastPlayDate) : null;
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                
+                if (lastPlayDate) {
+                    lastPlayDate.setHours(0, 0, 0, 0);
+                    const dayDiff = Math.floor((today - lastPlayDate) / (1000 * 60 * 60 * 24));
+                    
+                    if (dayDiff === 1) {
+                        // Consecutive day
+                        localStorage.setItem('astrafun_streak', streak + 1);
+                    } else if (dayDiff > 1) {
+                        // Streak broken
+                        localStorage.setItem('astrafun_streak', 1);
+                    }
+                    // If dayDiff === 0, same day, no change
+                } else {
+                    // First time playing
+                    localStorage.setItem('astrafun_streak', 1);
+                }
+                
+                localStorage.setItem('astrafun_lastPlayDate', today.toISOString());
+            } else {
+                // First time playing
+                localStorage.setItem('astrafun_streak', 1);
+                localStorage.setItem('astrafun_lastPlayDate', new Date().toISOString());
+            }
+        }
+        
+        // Save data to localStorage
+        function saveToStorage() {
+            localStorage.setItem('astrafun_wallet', wallet);
+            localStorage.setItem('astrafun_totalTaps', totalTaps);
+            localStorage.setItem('astrafun_adFrequency', adPopupInterval);
+            localStorage.setItem('astrafun_soundEnabled', soundEnabled);
+        }
+        
+        // Update wallet display
+        function updateWallet() {
+            walletValue.textContent = wallet;
+        }
+        
+        // Update progress bar - now shows total taps instead of session limit
+        function updateProgressBar() {
+            // Progress bar now shows a cycle every 100 taps
+            const progress = (totalTaps % 100) / 100 * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+        
+        // Update click counter display
+        function updateClickCounter() {
+            clickCounterValue.textContent = currentClickCount;
+            clickCounterMax.textContent = adPopupInterval;
+        }
+        
+        // Update settings UI
+        function updateSettings() {
+            // Update ad frequency toggle
+            if (adPopupInterval === FAST_AD_POPUP_INTERVAL) {
+                adFrequencyToggle.classList.add('active');
+            } else {
+                adFrequencyToggle.classList.remove('active');
+            }
+            
+            // Update sound toggle
+            if (soundEnabled) {
+                soundToggle.classList.add('active');
+            } else {
+                soundToggle.classList.remove('active');
+            }
+        }
+        
+        // Update streak display
+        function updateStreak() {
+            const streak = localStorage.getItem('astrafun_streak') || 1;
+            streakCount.textContent = streak;
+        }
+        
+        // Show toast notification
+        function showToast(message, duration = 3000) {
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, duration);
+        }
+        
+        // Check online status
+        function checkOnlineStatus() {
+            // Check if browser is online
+            if (navigator.onLine) {
+                // Try to fetch a small resource to verify actual connectivity
+                fetch('https://www.google.com/favicon.ico', {
+                    method: 'HEAD',
+                    mode: 'no-cors',
+                    cache: 'no-store'
+                })
+                .then(() => {
+                    // If fetch succeeds, we're online
+                    if (!isOnline) {
+                        isOnline = true;
+                        handleOnlineStatusChange();
+                    }
+                })
+                .catch(() => {
+                    // If fetch fails, we might be offline
+                    if (isOnline) {
+                        isOnline = false;
+                        handleOnlineStatusChange();
+                    }
+                });
+            } else {
+                // Browser reports offline
+                if (isOnline) {
+                    isOnline = false;
+                    handleOnlineStatusChange();
+                }
+            }
+            
+            // Update status indicator
+            updateStatusIndicator();
+        }
+        
+        // Handle online status change
+        function handleOnlineStatusChange() {
+            if (isOnline) {
+                // User is online
+                closeModal(offlineModal);
+                mainContent.classList.remove('disabled');
+                diamondContainer.classList.remove('disabled');
+                showToast('Connection restored');
+            } else {
+                // User is offline
+                showModal(offlineModal);
+                mainContent.classList.add('disabled');
+                diamondContainer.classList.add('disabled');
+            }
+        }
+        
+        // Update status indicator in offline modal
+        function updateStatusIndicator() {
+            if (isOnline) {
+                statusIndicator.classList.add('online');
+                statusText.textContent = 'Online';
+            } else {
+                statusIndicator.classList.remove('online');
+                statusText.textContent = 'Offline';
+            }
+        }
+        
+        // Start offline checking
+        function startOfflineCheck() {
+            // Check immediately
+            checkOnlineStatus();
+            
+            // Set up interval for continuous checking
+            offlineCheckInterval = setInterval(checkOnlineStatus, OFFLINE_CHECK_INTERVAL);
+            
+            // Listen for online/offline events
+            window.addEventListener('online', () => {
+                isOnline = true;
+                handleOnlineStatusChange();
+            });
+            
+            window.addEventListener('offline', () => {
+                isOnline = false;
+                handleOnlineStatusChange();
+            });
+        }
+        
+        // Set up event listeners
+        function setupEventListeners() {
+            // Diamond tap
+            diamondContainer.addEventListener('click', handleDiamondTap);
+            
+            // Modal close buttons
+            closeCelebration.addEventListener('click', () => {
+                closeModal(celebrationModal);
+            });
+            
+            closeAd.addEventListener('click', () => {
+                closeModal(adModal);
+            });
+            
+            closeRedeem.addEventListener('click', () => {
+                closeModal(redeemModal);
+            });
+            
+            closeSettings.addEventListener('click', () => {
+                closeModal(settingsModal);
+            });
+            
+            // Settings button
+            settingsBtn.addEventListener('click', () => {
+                if (isOnline) {
+                    showModal(settingsModal);
+                } else {
+                    showToast('Cannot open settings while offline');
+                }
+            });
+            
+            // Redeem button
+            redeemBtn.addEventListener('click', () => {
+                if (isOnline) {
+                    redeemError.style.display = 'none';
+                    successMessage.classList.remove('show');
+                    showModal(redeemModal);
+                } else {
+                    showToast('Cannot redeem while offline');
+                }
+            });
+            
+            // Generate code button
+            generateCodeBtn.addEventListener('click', generateAndSendRedeemCode);
+            
+            // Ad frequency toggle
+            adFrequencyToggle.addEventListener('click', () => {
+                adFrequencyToggle.classList.toggle('active');
+                
+                if (adFrequencyToggle.classList.contains('active')) {
+                    adPopupInterval = FAST_AD_POPUP_INTERVAL;
+                    showToast('Ad will now show after every 2 clicks');
+                } else {
+                    adPopupInterval = DEFAULT_AD_POPUP_INTERVAL;
+                    showToast('Ad will now show after every 5 clicks');
+                }
+                
+                updateClickCounter();
+                saveToStorage();
+            });
+            
+            // Sound toggle
+            soundToggle.addEventListener('click', () => {
+                soundToggle.classList.toggle('active');
+                soundEnabled = soundToggle.classList.contains('active');
+                
+                // Play a test sound when enabling
+                if (soundEnabled) {
+                    playClickSound();
+                    showToast('Sound effects enabled');
+                } else {
+                    showToast('Sound effects disabled');
+                }
+                
+                saveToStorage();
+            });
+        }
+        
+        // Handle diamond tap
+        function handleDiamondTap(e) {
+            // Check if user is online
+            if (!isOnline) {
+                showToast('Please connect to internet to play');
+                return;
+            }
+            
+            const now = Date.now();
+            
+            // Debounce check
+            if (now - lastTapTime < DEBOUNCE_TIME) return;
+            
+            // Update last tap time
+            lastTapTime = now;
+            
+            // Record first tap time if this is first tap
+            if (firstTapTime === 0) {
+                firstTapTime = now;
+            }
+            
+            // Increment tap count
+            totalTaps++;
+            currentClickCount++;
+            
+            // Add diamonds to wallet
+            wallet += DIAMONDS_PER_TAP;
+            updateWallet();
+            updateProgressBar();
+            updateClickCounter();
+            
+            // Save to storage
+            saveToStorage();
+            
+            // Play click sound
+            playClickSound();
+            
+            // Add tap animation
+            diamondContainer.classList.add('tapped');
+            setTimeout(() => {
+                diamondContainer.classList.remove('tapped');
+            }, 300);
+            
+            // Show "+10" animation
+            showTapAnimation(e.clientX, e.clientY);
+            
+            // Create confetti effect
+            createConfetti(e.clientX, e.clientY);
+            
+            // Check for celebration (every 5 taps)
+            if (totalTaps % 5 === 0) {
+                celebrationCount++;
+                showCelebration();
+            }
+            
+            // Check if we need to show an ad popup
+            if (currentClickCount >= adPopupInterval) {
+                showAdPopup();
+            }
+        }
+        
+        // Show tap animation
+        function showTapAnimation(x, y) {
+            const animation = document.createElement('div');
+            animation.className = 'tap-animation';
+            animation.textContent = `+${DIAMONDS_PER_TAP}`;
+            animation.style.left = `${x}px`;
+            animation.style.top = `${y}px`;
+            
+            document.body.appendChild(animation);
+            
+            setTimeout(() => {
+                document.body.removeChild(animation);
+            }, 1000);
+        }
+        
+        // Create confetti effect
+        function createConfetti(x, y) {
+            const colors = ['#ffcc00', '#ff0000', '#0f7938', '#ffffff', '#0080ff'];
+            
+            for (let i = 0; i < 10; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = `${x}px`;
+                confetti.style.top = `${y}px`;
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Random direction and speed
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = 50 + Math.random() * 50;
+                const vx = Math.cos(angle) * velocity;
+                const vy = Math.sin(angle) * velocity;
+                
+                document.body.appendChild(confetti);
+                
+                // Animate confetti
+                let posX = x;
+                let posY = y;
+                let opacity = 1;
+                
+                const animateConfetti = () => {
+                    posX += vx * 0.02;
+                    posY += vy * 0.02 + 2; // Add gravity
+                    opacity -= 0.02;
+                    
+                    confetti.style.left = `${posX}px`;
+                    confetti.style.top = `${posY}px`;
+                    confetti.style.opacity = opacity;
+                    
+                    if (opacity > 0) {
+                        requestAnimationFrame(animateConfetti);
+                    } else {
+                        document.body.removeChild(confetti);
+                    }
+                };
+                
+                requestAnimationFrame(animateConfetti);
+            }
+        }
+        
+        // Show celebration modal
+        function showCelebration() {
+            const celebrationAmount = celebrationCount * 5 * DIAMONDS_PER_TAP;
+            document.getElementById('celebrationAmount').textContent = celebrationAmount;
+            
+            // Update modal progress bar
+            const modalProgressBar = document.getElementById('modalProgressBar');
+            const progress = (totalTaps % 100) / 100 * 100;
+            modalProgressBar.style.width = `${progress}%`;
+            
+            // Play bell sound for celebration
+            playBellSound();
+            
+            showModal(celebrationModal);
+        }
+        
+        // Show ad popup
+        function showAdPopup() {
+            // Pause game
+            isGamePaused = true;
+            mainContent.classList.add('paused');
+            diamondContainer.classList.add('disabled');
+            
+            // Show ad modal
+            showModal(adModal);
+            adPopupCount++;
+            
+            // Reset click counter
+            currentClickCount = 0;
+            updateClickCounter();
+        }
+        
+        // Generate and send redeem code to WhatsApp
+        function generateAndSendRedeemCode() {
+            // Check if user is online
+            if (!isOnline) {
+                showToast('Please connect to internet to redeem');
+                return;
+            }
+            
+            // Check if user has enough diamonds
+            if (wallet < MIN_REDEEM_AMOUNT) {
+                redeemError.style.display = 'block';
+                return;
+            }
+            
+            // Generate secure random code
+            const code = generateSecureCode();
+            
+            // Send to WhatsApp
+            sendToWhatsApp(code);
+            
+            // Deduct diamonds from wallet
+            wallet -= MIN_REDEEM_AMOUNT;
+            updateWallet();
+            saveToStorage();
+            
+            // Show success message
+            successMessage.classList.add('show');
+            
+            // Hide button after successful redemption
+            generateCodeBtn.style.display = 'none';
+        }
+        
+        // Send to WhatsApp
+        function sendToWhatsApp(code) {
+            const message = `I've earned a redeem code from Diamond Click here 🎅: ${code}`;
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+            
+            // Open WhatsApp in a new tab
+            window.open(whatsappUrl, '_blank');
+        }
+        
+        // Generate secure random code
+        function generateSecureCode() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let code = '';
+            
+            // Use crypto.getRandomValues if available
+            if (window.crypto && window.crypto.getRandomValues) {
+                const array = new Uint32Array(10);
+                window.crypto.getRandomValues(array);
+                
+                for (let i = 0; i < 10; i++) {
+                    code += chars[array[i] % chars.length];
+                }
+            } else {
+                // Fallback to Math.random
+                for (let i = 0; i < 10; i++) {
+                    code += chars[Math.floor(Math.random() * chars.length)];
+                }
+            }
+            
+            return code;
+        }
+        
+        // Show modal with animation
+        function showModal(modal) {
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+        }
+        
+        // Close modal with animation
+        function closeModal(modal) {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                
+                // If closing ad modal, resume game
+                if (modal === adModal) {
+                    isGamePaused = false;
+                    mainContent.classList.remove('paused');
+                    diamondContainer.classList.remove('disabled');
+                }
+            }, 300);
+        }
+        
+        // Initialize app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
+  <script>(function(s){s.dataset.zone='8595763',s.src='https://groleegni.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+  <script>(function(s){s.dataset.zone='8595722',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+  
